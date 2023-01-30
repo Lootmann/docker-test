@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./src
+        target: /app
+    ports:
+      - published: 3000
+        target: 3000
+    command: sh -c "cd nextjs-docker && npm run dev"
+    environment:
+      - WATCHPACK_POLLING=true
+    tty: true
